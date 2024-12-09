@@ -1,0 +1,17 @@
+
+    Graduation Success Model Report
+    ===============================
+    Student Name: Jenny Casteel
+    Student ID: 8675309
+
+    Results
+    -------
+    Input Text: The data analysis methods in this project center on the development of three classification models: SVM, RNN, and CNN. Each model was tailored to process text data, using distinct approaches to maximize performance. The SVM model utilized a TF-IDF vectorizer to convert text into feature vectors, enabling efficient classification with hyperparameter tuning via GridSearchCV. The RNN model was built with an embedding layer initialized using pre-trained GloVe embeddings, followed by bidirectional LSTM layers to capture sequential dependencies in the text (Chollet, 2021). Similarly, the CNN model used convolutional layers to extract spatial features from text sequences, enhancing its ability to identify patterns (Chollet, 2021). 
+    Word Count: 104
+    Sentiment Score: 0.6249
+    Readability Score: 14.9
+    SVM Prediction: unsuccessful (Probability: 0.24)
+    RNN Prediction: unsuccessful (Probability: 0.25)
+    CNN Prediction: unsuccessful (Probability: 0.00)
+    Ensemble Prediction: unsuccessful
+    

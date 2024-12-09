@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduation Success Model Interface</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .results {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .help-button {
+            background-color: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .help-button:hover {
+            background-color: #0b7dda;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .form-row input {
+            width: calc(50% - 10px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Graduation Success Model Interface</h1>
+    <h2>Copy and paste the student's writing sample into the field below and select Classify</h2>
+    <form method="POST">
+        <!-- Fields for Student's Name and ID -->
+        <div class="form-row">
+            <input type="text" id="student_name" name="student_name" placeholder="Student's Name" required>
+            <input type="text" id="student_id" name="student_id" placeholder="Student ID" required>
+        </div><br>
+
+        <label for="text_input">Enter your text below:</label><br>
+        <textarea id="text_input" name="text_input" rows="10" cols="50" placeholder="Type or paste your text here..."></textarea><br><br>
+        <button type="submit">Classify</button>
+    </form>
+
+    <!-- Help Button -->
+    <form action="/help" method="GET">
+        <button type="submit" class="help-button">Help</button>
+    </form>
+
+    <!-- Error Handling -->
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display results -->
+    {% if raw_text %}
+        <div class="results">
+            <h2>Results</h2>
+            <p><strong>Student Name:</strong> {{ student_name }}</p>
+            <p><strong>Student ID:</strong> {{ student_id }}</p>
+            <p><strong>Input Text:</strong> {{ raw_text }}</p>
+            <p><strong>Word Count:</strong> {{ word_count }}</p>
+            <p><strong>Sentiment Score:</strong> {{ sentiment_score }}</p>
+            <p><strong>Readability Score:</strong> {{ readability_score }}</p>
+            <p><strong>SVM Prediction:</strong> {{ svm_class }} ({{ svm_prob | round(2) }})</p>
+            <p><strong>RNN Prediction:</strong> {{ rnn_class }} ({{ rnn_prob | round(2) }})</p>
+            <p><strong>CNN Prediction:</strong> {{ cnn_class }} ({{ cnn_prob | round(2) }})</p>
+            <p><strong>Ensemble Prediction:</strong> {{ ensemble_class }}</p>
+        </div>
+
+        <!-- Print Report Button -->
+        <form action="/download_report" method="POST">
+            <input type="hidden" name="student_name" value="{{ student_name }}">
+            <input type="hidden" name="student_id" value="{{ student_id }}">
+            <input type="hidden" name="raw_text" value="{{ raw_text }}">
+            <input type="hidden" name="word_count" value="{{ word_count }}">
+            <input type="hidden" name="sentiment_score" value="{{ sentiment_score }}">
+            <input type="hidden" name="readability_score" value="{{ readability_score }}">
+            <input type="hidden" name="svm_class" value="{{ svm_class }}">
+            <input type="hidden" name="svm_prob" value="{{ svm_prob }}">
+            <input type="hidden" name="rnn_class" value="{{ rnn_class }}">
+            <input type="hidden" name="rnn_prob" value="{{ rnn_prob }}">
+            <input type="hidden" name="cnn_class" value="{{ cnn_class }}">
+            <input type="hidden" name="cnn_prob" value="{{ cnn_prob }}">
+            <input type="hidden" name="ensemble_class" value="{{ ensemble_class }}">
+            <button type="submit">Print Report</button>
+        </form>
+    {% endif %}
+</body>
+</html>

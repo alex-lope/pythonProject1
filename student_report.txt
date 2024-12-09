@@ -1,0 +1,17 @@
+
+    Graduation Success Model Report
+    ===============================
+    Student Name: 
+    Student ID: 
+
+    Results
+    -------
+    Input Text: An ensemble voting logic was implemented to combine these models: predictions from the three models were joined, with the final classification determined based on predefined rules. For "unsuccessful" classifications, consensus among all three models was required, while "successful" classifications were based on at least one model predicting success. This ensemble method improved overall reliability and addressed individual model limitations. Plots and visualizations, including ROC-AUC curves for each model, demonstrate their predictive performance and the ensemble's effectiveness. These curves highlight the trade-offs between sensitivity and specificity, visually representing each model's contribution to the final ensemble classification (Narkhede, 2018).
+    Word Count: 97
+    Sentiment Score: 0.9169
+    Readability Score: 16.8
+    SVM Prediction: unsuccessful (Probability: 0.25)
+    RNN Prediction: unsuccessful (Probability: 0.25)
+    CNN Prediction: unsuccessful (Probability: 0.01)
+    Ensemble Prediction: unsuccessful
+    
