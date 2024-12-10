@@ -1,0 +1,10 @@
+name: flask-app
+container:
+  image: alex@azreg.com/graduation-success-model
+resources:
+  memory: 8Gi
+  gpu: P4000  # Update to a GPU type if needed, e.g., nvidia-t4
+  cpu: 4
+endpoint:
+  type: public
+  port: 5000
