@@ -1,10 +1,12 @@
-name: flask-app
-container:
-  image: alex@azreg.com/graduation-success-model
+enabled: true
+name: graduation-success
+image: alexlopef15/flask-app:rev2
+port: 5000
 resources:
-  memory: 8Gi
-  gpu: P4000  # Update to a GPU type if needed, e.g., nvidia-t4
-  cpu: 4
-endpoint:
-  type: public
-  port: 5000
+  replicas: 1
+  instanceType: P4000
+env:
+  - name: FLASK_ENV
+    value: production
+  - name: SECRET_KEY
+    value: its-been-years-2017

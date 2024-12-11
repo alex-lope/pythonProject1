@@ -8,6 +8,7 @@ import tensorflow as tf
 import textstat
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import re
+import os
 
 # initialize Flask app
 app = Flask(__name__)
@@ -189,7 +190,8 @@ def download_report():
     except Exception as e:
         return f"Error saving report: {e}"
 
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'its-been-years-2017')
 
 # run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
