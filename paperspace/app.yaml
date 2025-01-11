@@ -1,12 +1,16 @@
 enabled: true
 name: graduation-success
-image: alexlopef15/flask-app:rev2
+image: alexlopef15/flask-app:rev5
 port: 5000
 resources:
   replicas: 1
-  instanceType: P4000
+  instanceType: A5000
 env:
   - name: FLASK_ENV
     value: production
   - name: SECRET_KEY
     value: its-been-years-2017
+  - name: DOCKER_USERNAME
+    value: alexlopef15
+  - name: DOCKER_PASSWORD
+    value: DataScience#01
