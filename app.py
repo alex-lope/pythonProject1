@@ -12,6 +12,8 @@ import os
 
 # initialize Flask app
 app = Flask(__name__)
+app.config['ENV'] = os.getenv('FLASK_ENV', 'development')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-secret')
 
 # load models and vectorizers
 def load_pickle_model(file_path, model_name):
