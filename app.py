@@ -196,4 +196,4 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'its-been-years-2017')
 
 # run the app
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, host = '0.0.0.0', port = 8000)
