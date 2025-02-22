@@ -1,10 +1,23 @@
 import re
+import html
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+nltk.download('stopwords')
+nltk.download('wordnet')
+
 
 def preprocess_input_text(text):
-    text = text.replace('\n', ' ')  # replace newlines with spaces
-    text = re.sub(r'\s+', ' ', text)  # strip extra spaces
-    text = text.strip()  # strip leading/trailing spaces
-    return text
+    stop_words = set(stopwords.words('english'))
+    lemmatizer = WordNetLemmatizer()
+
+    text = html.unescape(text)
+    text = re.sub(r'<.*?>', "", text)  # remove HTML tags
+    text = text.strip().lower()  # strip and lowercase
+    text = re.sub(r'[^\w\s]', '', text)  # remove punctuation
+    preprocessed_text = ' '.join(
+        [lemmatizer.lemmatize(word) for word in text.split() if word not in stop_words])  # lemmatizer
+    return preprocessed_text
 
 def validate_input(text):
     if not text.strip():  # check if text is empty
@@ -19,3 +32,4 @@ def validate_input(text):
         return False, "Input contains potentially malicious content (e.g., <script> tags)."
 
     return True, None
+
