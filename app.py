@@ -105,9 +105,9 @@ def index():
         processed_text = preprocess_input_text(raw_text)
 
         # process and predict
-        svm_pred_class, svm_pred_prob = predict_with_model(raw_text, svm_model, tfidf_vectorizer, 'tfidf')
-        rnn_pred_class, rnn_pred_prob = predict_with_model(raw_text, rnn_model, text_vectorizer, 'sequence')
-        cnn_pred_class, cnn_pred_prob = predict_with_model(raw_text, cnn_model, text_vectorizer, 'sequence')
+        svm_pred_class, svm_pred_prob = predict_with_model(processed_text, svm_model, tfidf_vectorizer, 'tfidf')
+        rnn_pred_class, rnn_pred_prob = predict_with_model(processed_text, rnn_model, text_vectorizer, 'sequence')
+        cnn_pred_class, cnn_pred_prob = predict_with_model(processed_text, cnn_model, text_vectorizer, 'sequence')
 
         # ensemble prediction logic
         predictions = [svm_pred_class, rnn_pred_class, cnn_pred_class]
